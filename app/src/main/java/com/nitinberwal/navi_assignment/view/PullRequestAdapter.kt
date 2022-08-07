@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nitinberwal.navi_assignment.R
 import com.nitinberwal.navi_assignment.model.PullRequest
 import com.nitinberwal.navi_assignment.util.getProgressDrawable
-import com.nitinberwal.navi_assignment.util.loadImage
+import com.nitinberwal.navi_assignment.util.loadImageFromUrl
 import kotlinx.android.synthetic.main.item_list.view.*
 
 class PullRequestAdapter(var pullRequest: ArrayList<PullRequest>):RecyclerView.Adapter<PullRequestAdapter.PullListRequestViewHolder>() {
@@ -42,7 +42,7 @@ class PullRequestAdapter(var pullRequest: ArrayList<PullRequest>):RecyclerView.A
          created_date.text = pullRequest.created_date
          closed_date.text = pullRequest.closed_date
          username.text = pullRequest.user.name
-         imageView.loadImage(pullRequest.user.avatar_url, progressDrawable)
+         pullRequest.user.avatar_url?.let { loadImageFromUrl(imageView, it) }
       }
    }
 }
